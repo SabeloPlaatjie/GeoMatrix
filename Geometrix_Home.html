@@ -1,0 +1,174 @@
+<!-- This line tells the browser that the document is written in HTML5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper symbol and text display -->
+    <meta charset="UTF-8">
+
+    <!-- Ensures responsive scaling on mobile devices, tablets, and desktops -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>Geometrix_Dashboard</title>
+
+    <!-- Google Fonts: Inter for modern, clean sans-serif typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External CSS stylesheet link (located in the same folder) -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ====================================================================
+         1. BROWSER MOCKUP HEADER BAR (from the mockup screenshot)
+         Simulates the browser window bar with 3 control dots and URL bar.
+         (If deploying on a live website, this mockup bar can be removed)
+         ==================================================================== -->
+    <div class="browser-bar">
+        <!-- Window control circles on the top left -->
+        <div class="window-dots">
+            <span class="dod"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <!-- Simulated browser address / URL bar -->
+        <div class="address-bar">
+            geomatrixgis.com
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         2. MAIN DASHBOARD CONTAINER
+         Centers and wraps the website content with balanced padding.
+         ==================================================================== -->
+    <div class="dashboard-container">
+
+        <!-- ================================================================
+             3. WEBSITE HEADER & NAVIGATION BAR
+             Contains the GEOMATRIX logo on the left and menu links on the right.
+             ================================================================ -->
+        <header class="navbar">
+            <!-- Brand Logo -->
+            <a href="Geometrix_Home.html" class="logo">GEOMATRIX</a>
+
+            <!-- Navigation Links -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="Geometrix_Home.html" class="nav-link active">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="news.html" class="nav-link">News & Updates</a></li>
+                    <li><a href="partnership.html" class="nav-link">Partnership</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- ================================================================
+             4. MAIN CONTENT AREA
+             ================================================================ -->
+        <main>
+            <!-- ------------------------------------------------------------
+                 HERO SECTION (2 COLUMNS)
+                 Left: Hero message, description, and "Get Started" button
+                 Right: Glowing 3D holographic GIS Earth globe
+                 ------------------------------------------------------------ -->
+            <section class="hero-section">
+                <!-- Left Hero Card: Intro & Call To Action -->
+                <div class="hero-card-left">
+                    <h1 class="hero-title">
+                        Mapping the Future,<br>
+                        One Layer at a Time
+                    </h1>
+                    <p class="hero-subtitle">
+                        Cutting-edge GIS solutions that transform spatial data into
+                        actionable intelligence for smarter decisions.
+                    </p>
+                    <button class="btn-primary" type="button" onclick="window.location.href='about.html'">Get Started</button>
+                </div>
+
+                <!-- Right Hero Card: 3D Interactive Rotating Globe with Satellite Radar Scan -->
+                <div class="hero-card-right" id="globe-container">
+                    <!-- Ambient pulsing radar ring behind the globe -->
+                    <div class="radar-ping"></div>
+
+                    <!-- 3D WebGL Canvas for smoothly rotating Earth globe (rendered by Three.js) -->
+                    <canvas id="globe-canvas" class="globe-canvas"></canvas>
+
+                    <!-- Fallback static image in case WebGL or JavaScript is disabled -->
+                    <img 
+                        src="globe.png" 
+                        alt="3D Holographic GIS Earth Globe" 
+                        class="globe-image"
+                        id="globe-fallback"
+                        style="display: none;"
+                    >
+
+                    <!-- Satellite radar scan line sweeping continuously across the rotating globe -->
+                    <div class="radar-scanline"></div>
+                </div>
+            </section>
+
+            <!-- ------------------------------------------------------------
+                 FEATURES SECTION (4 SERVICE CARDS)
+                 Spatial Analytics, Custom Mapping, Remote Sensing, Data Integration
+                 ------------------------------------------------------------ -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="features-section">
+                <!-- Feature Card 1: Spatial Analytics -->
+                <article class="feature-card">
+                    <h3 class="feature-title">Spatial Analytics</h3>
+                    <p class="feature-desc">Advanced pattern detection and forecasting tools.</p>
+                </article>
+
+                <!-- Feature Card 2: Custom Mapping -->
+                <article class="feature-card">
+                    <h3 class="feature-title">Custom Mapping</h3>
+                    <p class="feature-desc">Interactive maps tailored to your needs.</p>
+                </article>
+
+                <!-- Feature Card 3: Remote Sensing -->
+                <article class="feature-card">
+                    <h3 class="feature-title">Remote Sensing</h3>
+                    <p class="feature-desc">Satellite and drone imagery processing.</p>
+                </article>
+
+                <!-- Feature Card 4: Data Integration -->
+                <article class="feature-card">
+                    <h3 class="feature-title">Data Integration</h3>
+                    <p class="feature-desc">Unified spatial data platforms.</p>
+                </article>
+            </section>
+        </main>
+
+        <!-- ================================================================
+             5. FOOTER
+             ================================================================ -->
+        <footer class="footer">
+            <a href="Geometrix_Home.html" class="footer-logo">GEOMATRIX</a>
+            <ul class="footer-links">
+                <li><a href="Geometrix_Home.html" class="footer-link">Home</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="about.html" class="footer-link">About Us</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="news.html" class="footer-link">News</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="partnership.html" class="footer-link">Partnership</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- ====================================================================
+         SCRIPTS: Three.js 3D Library & Rotating Globe Controller
+         Enables smooth 60 FPS rotation and mouse drag interactivity.
+         ==================================================================== -->
+    <script src="three.min.js"></script>
+    <script src="globe.js"></script>
+
+</body>
+</html>

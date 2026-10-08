@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates - GEOMATRIX</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Browser Mockup Header Bar -->
+    <div class="browser-bar">
+        <div class="window-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <div class="address-bar">
+            geomatrixgis.com/news-updates
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+
+        <!-- Website Header & Navigation -->
+        <header class="navbar">
+            <a href="Geometrix_Home.html" class="logo">GEOMATRIX</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="Geometrix_Home.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="news.html" class="nav-link active">News & Updates</a></li>
+                    <li><a href="partnership.html" class="nav-link">Partnership</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main style="display: flex; flex-direction: column; gap: 22px;">
+
+            <!-- Page Title and Filter Chips -->
+            <div class="page-header-row">
+                <h1 class="page-title">News and updates</h1>
+                <div class="filter-chips">
+                    <button class="filter-chip active" type="button" onclick="setFilter('all', this)">All</button>
+                    <button class="filter-chip" type="button" onclick="setFilter('projects', this)">Projects</button>
+                    <button class="filter-chip" type="button" onclick="setFilter('events', this)">Events</button>
+                    <button class="filter-chip" type="button" onclick="setFilter('research', this)">Research</button>
+                </div>
+            </div>
+
+            <!-- Featured News Card -->
+            <section class="featured-news-card">
+                <!-- Media / Image Placeholder -->
+                <div class="media-placeholder featured-media">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+
+                <!-- Featured Story Details -->
+                <div class="featured-content">
+                    <span class="pill-badge">Featured</span>
+                    <h2 class="featured-title">Headline of the latest big announcement</h2>
+                    <p class="featured-desc">
+                        Two lines of summary text that tease the story and pull the reader in.
+                    </p>
+                    <a href="#" class="read-more-link">
+                        Read more 
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"/>
+                            <polyline points="7 7 17 7 17 17"/>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Regular News Cards Grid -->
+            <section class="news-grid">
+                <!-- Article 1: Projects -->
+                <article class="news-card" data-category="projects">
+                    <div class="media-placeholder news-thumb">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="pill-badge pill-badge-sm">Projects</span>
+                        <h3 class="news-title">Article title goes here</h3>
+                        <p class="news-date">DD Month YYYY</p>
+                    </div>
+                </article>
+
+                <!-- Article 2: Events -->
+                <article class="news-card" data-category="events">
+                    <div class="media-placeholder news-thumb">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="pill-badge pill-badge-sm">Events</span>
+                        <h3 class="news-title">Article title goes here</h3>
+                        <p class="news-date">DD Month YYYY</p>
+                    </div>
+                </article>
+
+                <!-- Article 3: Research -->
+                <article class="news-card" data-category="research">
+                    <div class="media-placeholder news-thumb">
+                        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="pill-badge pill-badge-sm">Research</span>
+                        <h3 class="news-title">Article title goes here</h3>
+                        <p class="news-date">DD Month YYYY</p>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Load More Button -->
+            <div class="load-more-wrapper">
+                <button class="btn-primary btn-load-more" type="button">Load more</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="Geometrix_Home.html" class="footer-logo">GEOMATRIX</a>
+            <ul class="footer-links">
+                <li><a href="Geometrix_Home.html" class="footer-link">Home</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="about.html" class="footer-link">About Us</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="news.html" class="footer-link">News</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="partnership.html" class="footer-link">Partnership</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- Category Filter Interaction Script -->
+    <script>
+        function setFilter(category, buttonElement) {
+            // Update active state of buttons
+            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            // Filter news cards
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

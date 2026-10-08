@@ -1,0 +1,1078 @@
+/* ==========================================================================
+   GEOMATRIX GIS DASHBOARD - STYLESHEET
+   Description: Clean, modern dark-themed GIS dashboard styling with neon
+                lime accent colors, matching the mockup screenshot.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES (DESIGN TOKENS)
+   These variables store our color palette, typography, and layout settings
+   so they can be easily reused and maintained across the stylesheet.
+   -------------------------------------------------------------------------- */
+:root {
+    /* Background Colors */
+    --bg-page: #1a1a1a;            /* Main dark background of the page */
+    --bg-top-bar: #2a2a2a;         /* Mockup browser top header bar */
+    --bg-url-bar: #3a3a3a;         /* URL pill background */
+    --bg-hero-left: #222222;       /* Left hero card background */
+    --bg-hero-right: #030303;      /* Right globe container background */
+    --bg-feature-card: #2a2a2a;    /* Bottom feature cards background */
+    --border-feature-card: #3a3a3c;/* Subtle border around feature cards */
+
+    /* Accent & Brand Colors */
+    --color-accent: #adf203;       /* Bright neon lime green (logo, button, card titles) */
+    --color-accent-hover: #beff05; /* Slightly brighter lime on hover */
+    --color-dot-green: #28c840;    /* Third window control dot color */
+
+    /* Text Colors */
+    --color-text-white: #ffffff;   /* Primary bold white text */
+    --color-text-nav: #f3f3f3;     /* Navigation link text */
+    --color-text-muted: #b0b0b0;   /* Secondary gray text for descriptions */
+    --color-text-dim: #777777;     /* Dim gray for mockup URL bar */
+    --color-btn-text: #111111;     /* Dark text on neon green button */
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* Spacing & Borders */
+    --border-radius-hero: 20px;
+    --border-radius-card: 14px;
+    --border-radius-btn: 6px;
+    --transition-speed: 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   Ensures consistent box-sizing, typography, and zero-margin starting point.
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-page);
+    color: var(--color-text-white);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   3. BROWSER MOCKUP HEADER (Top Bar from Screenshot)
+   Simulates the browser window bar with 3 control dots and URL bar.
+   -------------------------------------------------------------------------- */
+.browser-bar {
+    width: 100%;
+    height: 42px;
+    background-color: var(--bg-top-bar);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Three circular window dots on the top left */
+.window-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.window-dots .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.window-dots .dot:nth-child(1),
+.window-dots .dot:nth-child(2) {
+    background-color: var(--color-accent); /* Lime green dots */
+}
+
+.window-dots .dot:nth-child(3) {
+    background-color: var(--color-dot-green); /* Emerald green dot */
+}
+
+/* Simulated Address / URL Bar */
+.address-bar {
+    background-color: var(--bg-url-bar);
+    color: var(--color-text-dim);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 18px;
+    border-radius: 20px;
+    width: 480px;
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. MAIN DASHBOARD CONTAINER
+   Wraps navigation, hero section, and feature cards with responsive margins.
+   -------------------------------------------------------------------------- */
+.dashboard-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 4px 32px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVIGATION BAR
+   Contains the bold 'GEOMATRIX' logo on the left and menu links on the right.
+   -------------------------------------------------------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+
+/* GEOMATRIX Logo */
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity var(--transition-speed);
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+/* Navigation Links List */
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 36px;
+}
+
+.nav-link {
+    color: var(--color-text-nav);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+}
+
+.nav-link:hover {
+    color: var(--color-accent);
+}
+
+.nav-link.active {
+    color: var(--color-text-white);
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO SECTION
+   Consists of two side-by-side cards:
+   - Left: Information text & CTA button
+   - Right: Interactive 3D holographic digital globe
+   -------------------------------------------------------------------------- */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+}
+
+/* Left Hero Info Card */
+.hero-card-left {
+    background-color: var(--bg-hero-left);
+    border-radius: var(--border-radius-hero);
+    padding: 34px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Main Hero Heading */
+.hero-title {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text-white);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+/* Hero Description Paragraph */
+.hero-subtitle {
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+    margin-bottom: 22px;
+    max-width: 440px;
+}
+
+/* 'Get Started' Call To Action Button */
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-btn-text);
+    border: none;
+    border-radius: var(--border-radius-btn);
+    padding: 9px 22px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(173, 242, 3, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Right Hero Visual Card (Globe Container) */
+.hero-card-right {
+    background-color: var(--bg-hero-right);
+    border-radius: var(--border-radius-hero);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 245px;
+}
+
+/* Ambient circular radar wave radiating behind the globe */
+.radar-ping {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(173, 242, 3, 0.4);
+    background: radial-gradient(circle, rgba(173, 242, 3, 0.12) 0%, rgba(173, 242, 3, 0) 70%);
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
+    animation: radarPulse 3.5s ease-out infinite;
+}
+
+/* Radar pulse keyframes: radiates outwards and fades out */
+@keyframes radarPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0.8;
+        border-color: rgba(173, 242, 3, 0.5);
+    }
+    50% {
+        opacity: 0.35;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.35);
+        opacity: 0;
+        border-color: rgba(173, 242, 3, 0);
+    }
+}
+
+/* 3D WebGL Rotating Globe Canvas (Interactive & Animated) */
+.globe-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    cursor: grab;
+    user-select: none;
+    animation: floatGlobe 4s ease-in-out infinite alternate;
+    transition: filter 0.3s ease;
+}
+
+.globe-canvas:active {
+    cursor: grabbing;
+}
+
+/* Fallback static Globe Image with gentle floating and holographic breathing glow */
+.globe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+    animation: floatGlobe 4s ease-in-out infinite alternate;
+    transition: filter 0.3s ease;
+}
+
+/* Float keyframes: subtle vertical float with pulsing neon green drop-shadow */
+@keyframes floatGlobe {
+    0% {
+        transform: translateY(2px) scale(0.99);
+        filter: drop-shadow(0 0 10px rgba(173, 242, 3, 0.2));
+    }
+    100% {
+        transform: translateY(-5px) scale(1.01);
+        filter: drop-shadow(0 0 24px rgba(173, 242, 3, 0.48));
+    }
+}
+
+/* Satellite radar scan line traversing vertically across the globe */
+.radar-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 38px;
+    background: linear-gradient(
+        180deg,
+        rgba(173, 242, 3, 0) 0%,
+        rgba(173, 242, 3, 0.06) 50%,
+        rgba(173, 242, 3, 0.28) 92%,
+        rgba(220, 255, 120, 0.65) 100%
+    );
+    border-bottom: 1.5px solid rgba(220, 255, 120, 0.85);
+    box-shadow: 0 2px 8px rgba(173, 242, 3, 0.35);
+    pointer-events: none;
+    z-index: 2;
+    animation: scanSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Scan sweep keyframes: sweeps from top to bottom */
+@keyframes scanSweep {
+    0% {
+        top: -15%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    85% {
+        opacity: 0.9;
+    }
+    100% {
+        top: 105%;
+        opacity: 0;
+    }
+}
+
+/* Interactive polish: intensify holographic glow when user hovers over the card */
+.hero-card-right:hover .globe-image {
+    filter: drop-shadow(0 0 32px rgba(173, 242, 3, 0.7));
+}
+
+/* --------------------------------------------------------------------------
+   7. FEATURES SECTION (BOTTOM 4 CARDS)
+   Four feature cards arranged in a responsive horizontal grid.
+   -------------------------------------------------------------------------- */
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Individual Feature Card */
+.feature-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    padding: 13px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 242, 3, 0.4);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Feature Card Title */
+.feature-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 7px;
+}
+
+/* Feature Card Description */
+.feature-desc {
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   8. SHARED BADGES, PLACEHOLDERS & UTILITIES
+   -------------------------------------------------------------------------- */
+.pill-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(173, 242, 3, 0.45);
+    background-color: rgba(173, 242, 3, 0.08);
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    width: fit-content;
+}
+
+.pill-badge-sm {
+    padding: 3px 12px;
+    font-size: 11.5px;
+    margin-bottom: 8px;
+}
+
+.media-placeholder {
+    background-color: #262626;
+    border: 1px solid #333333;
+    border-radius: var(--border-radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666666;
+    overflow: hidden;
+}
+
+.media-placeholder svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    opacity: 0.6;
+}
+
+.section-heading {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin: 8px 0 2px;
+}
+
+/* --------------------------------------------------------------------------
+   9. ABOUT US PAGE STYLES
+   -------------------------------------------------------------------------- */
+.about-top-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.about-intro-card {
+    background-color: var(--bg-hero-left);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-hero);
+    padding: 38px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-media-card {
+    background-color: var(--bg-hero-left);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-hero);
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-media-box {
+    width: 90%;
+    height: 85%;
+    background-color: #282828;
+    border-radius: var(--border-radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 242, 3, 0.4);
+}
+
+.stat-number {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 242, 3, 0.4);
+}
+
+.card-heading-lime {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.card-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.team-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    padding: 28px 18px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+}
+
+.team-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 242, 3, 0.4);
+}
+
+.team-avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #383838;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777777;
+    margin-bottom: 6px;
+}
+
+.team-avatar-placeholder svg {
+    width: 26px;
+    height: 26px;
+}
+
+.team-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-white);
+}
+
+.team-role {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   10. NEWS & UPDATES PAGE STYLES
+   -------------------------------------------------------------------------- */
+.page-header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 4px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-text-white);
+    letter-spacing: -0.5px;
+}
+
+.filter-chips {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    padding: 6px 18px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1px solid #444444;
+    color: var(--color-text-muted);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--transition-speed);
+    text-decoration: none;
+}
+
+.filter-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text-white);
+}
+
+.filter-chip.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-btn-text);
+}
+
+.featured-news-card {
+    background-color: var(--bg-hero-left);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-hero);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 28px;
+    align-items: center;
+}
+
+.featured-media {
+    width: 100%;
+    min-height: 230px;
+    height: 100%;
+    border-radius: var(--border-radius-card);
+}
+
+.featured-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-text-white);
+    line-height: 1.25;
+    margin-bottom: 12px;
+}
+
+.featured-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 18px;
+    max-width: 480px;
+}
+
+.read-more-link {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.read-more-link:hover {
+    color: var(--color-accent-hover);
+    transform: translateX(3px);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.news-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(173, 242, 3, 0.4);
+}
+
+.news-thumb {
+    width: 100%;
+    height: 155px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--border-feature-card);
+}
+
+.news-card-body {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.news-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-white);
+    line-height: 1.35;
+}
+
+.news-date {
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+}
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 4px;
+}
+
+.btn-load-more {
+    padding: 10px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   11. PARTNERSHIP PAGE STYLES
+   -------------------------------------------------------------------------- */
+.partnership-hero {
+    grid-template-columns: 1fr;
+    padding: 38px 42px;
+}
+
+.btn-inline {
+    display: inline-block;
+    text-decoration: none;
+    width: fit-content;
+    text-align: center;
+}
+
+.ways-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.way-card {
+    padding: 24px 22px;
+    gap: 10px;
+}
+
+.way-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-accent);
+    margin-bottom: 4px;
+}
+
+.way-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.partner-card {
+    background-color: var(--bg-feature-card);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-card);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.partner-card:hover {
+    border-color: rgba(173, 242, 3, 0.4);
+    transform: translateY(-2px);
+}
+
+.partner-logo-placeholder {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6a6a6a;
+    letter-spacing: 0.5px;
+}
+
+.touch-card {
+    background-color: var(--bg-hero-left);
+    border: 1px solid var(--border-feature-card);
+    border-radius: var(--border-radius-hero);
+    padding: 30px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.touch-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.touch-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--color-text-white);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color var(--transition-speed);
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+    color: #666666;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.form-textarea {
+    grid-column: 1 / -1;
+    resize: vertical;
+    min-height: 95px;
+}
+
+.btn-submit {
+    align-self: flex-start;
+    padding: 10px 24px;
+}
+
+/* --------------------------------------------------------------------------
+   12. FOOTER STYLES
+   -------------------------------------------------------------------------- */
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 22px 0 16px;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color var(--transition-speed);
+}
+
+.footer-logo:hover {
+    color: var(--color-accent);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    font-size: 13px;
+}
+
+.footer-link {
+    color: var(--color-text-dim);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-link:hover {
+    color: var(--color-text-white);
+}
+
+.footer-separator {
+    color: #444444;
+    user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVE DESIGN (MEDIA QUERIES)
+   Ensures the dashboard looks great on desktop, tablet, and mobile displays.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        padding: 14px 20px 30px;
+        gap: 20px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .features-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-top-grid, .featured-news-card {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card-left {
+        padding: 28px 24px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .address-bar {
+        max-width: 65%;
+    }
+
+    .stats-grid, .news-grid, .ways-grid, .mission-vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 540px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .features-section {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+
+    .team-grid, .partners-grid {
+        grid-template-columns: 1fr;
+    }
+}

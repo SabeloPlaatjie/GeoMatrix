@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership - GEOMATRIX</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Browser Mockup Header Bar -->
+    <div class="browser-bar">
+        <div class="window-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <div class="address-bar">
+            geomatrixgis.com/partnership
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+
+        <!-- Website Header & Navigation -->
+        <header class="navbar">
+            <a href="Geometrix_Home.html" class="logo">GEOMATRIX</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="Geometrix_Home.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="news.html" class="nav-link">News & Updates</a></li>
+                    <li><a href="partnership.html" class="nav-link active">Partnership</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main style="display: flex; flex-direction: column; gap: 20px;">
+
+            <!-- Top Hero Card -->
+            <section class="hero-card-left partnership-hero">
+                <h1 class="hero-title">Let's map something together</h1>
+                <p class="hero-subtitle">
+                    A line inviting companies, departments, and organisations to collaborate with GeoMatrix.
+                </p>
+                <a href="#contact-section" class="btn-primary btn-inline">Become a partner</a>
+            </section>
+
+            <!-- Ways to Work With Us Section -->
+            <section style="display: flex; flex-direction: column; gap: 12px;">
+                <h2 class="section-heading">Ways to work with us</h2>
+                <div class="ways-grid">
+                    <!-- Way 1: Project collaboration -->
+                    <div class="feature-card way-card">
+                        <div class="way-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                <polyline points="2 17 12 22 22 17"/>
+                                <polyline points="2 12 12 17 22 12"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Project collaboration</h3>
+                        <p class="feature-desc">Joint spatial analysis and mapping work.</p>
+                    </div>
+
+                    <!-- Way 2: Data sharing -->
+                    <div class="feature-card way-card">
+                        <div class="way-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Data sharing</h3>
+                        <p class="feature-desc">Access to datasets and imagery.</p>
+                    </div>
+
+                    <!-- Way 3: Sponsorship and events -->
+                    <div class="feature-card way-card">
+                        <div class="way-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Sponsorship and events</h3>
+                        <p class="feature-desc">Workshops, talks, and support.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Partners Section -->
+            <section style="display: flex; flex-direction: column; gap: 12px;">
+                <h2 class="section-heading">Our partners</h2>
+                <div class="partners-grid">
+                    <div class="partner-card"><span class="partner-logo-placeholder">Logo</span></div>
+                    <div class="partner-card"><span class="partner-logo-placeholder">Logo</span></div>
+                    <div class="partner-card"><span class="partner-logo-placeholder">Logo</span></div>
+                    <div class="partner-card"><span class="partner-logo-placeholder">Logo</span></div>
+                </div>
+            </section>
+
+            <!-- Get In Touch Form Section -->
+            <section class="touch-card" id="contact-section">
+                <h3 class="touch-title">Get in touch</h3>
+                <form class="touch-form" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been sent.'); this.reset();">
+                    <div class="form-row">
+                        <input type="text" class="form-input" placeholder="Your name" required>
+                        <input type="email" class="form-input" placeholder="name@company.com" required>
+                    </div>
+                    <div class="form-row">
+                        <textarea class="form-textarea" placeholder="Tell us about your idea" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-submit">Send enquiry</button>
+                </form>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="Geometrix_Home.html" class="footer-logo">GEOMATRIX</a>
+            <ul class="footer-links">
+                <li><a href="Geometrix_Home.html" class="footer-link">Home</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="about.html" class="footer-link">About Us</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="news.html" class="footer-link">News</a></li>
+                <li class="footer-separator">·</li>
+                <li><a href="partnership.html" class="footer-link">Partnership</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+</body>
+</html>
